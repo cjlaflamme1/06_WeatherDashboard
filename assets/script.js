@@ -1,16 +1,22 @@
 $(document).ready(function() {
+    // All of the current weather hooks
     const currentDate = moment().format('L');
     const cityAndDate = $('h2.cityDateValue');
     const currentIcon = $('img.currentWeatherIcon');
     const currentTemp = $('span.currentTempValue');
     const currentWind = $('span.currentWindSpeedValue');
     const currentUV = $('span.currentUVIndexValue');
-
+    // All of the forecast hooks
     const forecastContent = $('div.forecastContent');
     const forecastDate = $('h6.forecastDate');
     const forecastIcon = $('img.forecastPic');
     const forecastTemp = $('span.tempValue');
     const forecastHumidity = $('span.humidityValue');
+    // Establish search history for buttons
+    let searchHistory = JSON.parse(window.localStorage.getItem('searchHistory')) || [];
+    // Button creation for the search history
+    const buttonRow = $('div.buttonRow');
+    const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
     
     $('button.weatherSubmit').on("click", function(event) {
         event.preventDefault();
@@ -47,6 +53,12 @@ $(document).ready(function() {
                     $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
+
+                searchHistory.push({value: locationInput, lat: lat, long: long});
+                window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+                console.log(searchHistory);
+                historyButton.attr('data-lat', lat).attr('data-long', long).attr('value', locationInput).text(locationInput);
+                buttonRow.prepend(historyButton);
             })
         })
     })
