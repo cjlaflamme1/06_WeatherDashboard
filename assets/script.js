@@ -36,6 +36,7 @@ $(document).ready(function() {
         event.preventDefault();
         // takes the value of the weather input.
         const locationInput = $('input').val();
+        $('input').val("");
         console.log(locationInput);
         // Grabs the Lat/Long of the input location.
         const queryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geocodeApiKey}`;
