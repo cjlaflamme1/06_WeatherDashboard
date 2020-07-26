@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    const currentDate = moment().format('L');
+    const cityAndDate = $('h2.cityDateValue');
+    const currentTemp = $('span.currentTempValue');
+    const currentWind = $('span.currentWindSpeedValue');
+    const currentUV = $('span.currentUVIndexValue');
+
+    const forecastContent = $('div.forecastContent');
+    const forecastDate = $('h6.forecastDate');
+    const forecastIcon = $('i.forecastPic');
+    const forecastTemp = $('span.tempValue');
+    const forecastHumidity = $('span.humidityValue');
     
     $('button.weatherSubmit').on("click", function(event) {
         event.preventDefault();
@@ -16,11 +27,24 @@ $(document).ready(function() {
         $.get(queryURL).then(function(returnedLatLong) {
             const lat = returnedLatLong.data[0].latitude;
             const long = returnedLatLong.data[0].longitude;
-            console.log(lat,long);
-            const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}`;
+            console.log(returnedLatLong);
+            const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
             // Uses newly acquired lat/long to find weather for the location.
             $.get(weatherURL).then(function(returnedWeather) {
                 console.log(returnedWeather);
+                const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+                cityAndDate.text(`${locationInput} (${currentDate})`);
+                currentTemp.text(temp);
+                currentWind.text(wind_speed);
+                currentUV.text(uvi);
+
+                forecastContent.each(function(forecastDay) {
+                    console.log(forecastDay);
+                    $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('L'));
+                    $(forecastIcon[forecastDay]).text(daily[forecastDay].weather[0].id);
+                    $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
+                    $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
+                })
             })
         })
     })
