@@ -1,0 +1,7 @@
+
+div.currentWeather {
+    width:100%;
+    height: auto;
+    background-color: red;
+    border: 1px solid black;
+}

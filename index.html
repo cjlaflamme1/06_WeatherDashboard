@@ -3,18 +3,50 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/style.css" type="text/css" />
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <main class="container">
-        <form class="weatherSubmit">
-            <label for="locationInput">Input Town and State for your Weather forecast</label>
-            <input type="text" name="locationInput">
-            <button class="weatherSubmit" type="submit">Submit</button>
-        </form>
-        <div class="testDisplay"></div>
+    <header class="jumbotron jumbotron-fluid p-0">
+        <div class="container d-flex justify-content-center">
+            <h1 class="display-4 content-align-center">
+                Weather Dashboard
+            </h1>
+        </div>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <section class="col-12 col-md-4">
+                <form class="weatherSubmit">
+                    <label for="locationInput">Enter City and State:</label>
+                    <input type="text" name="locationInput">
+                    <button class="weatherSubmit btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </section>
+            <!-- Current weather section -->
+            <div class="col-12 col-md-8">
+                <div class="row card">
+                    <div class="col-12 currentWeather card-body">
+                        Some content
+                    </div>
+                </div>
+                <!--5 day forecast Title -->
+                <div class="row">
+                    <div class="col-12">
+                    More content
+                    </div>
+                </div>
+                <!-- 5 day forecast content -->
+                <section class="row">
+                    <div class="col-12">
+                    test content
+                    </div>
+            </section>
+            </div>
+        </div>
+    
 
     </main>
 
