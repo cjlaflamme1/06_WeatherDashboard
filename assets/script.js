@@ -2,8 +2,7 @@ $(document).ready(function() {
     // API Keys and their documentation
     // https://openweathermap.org/api/one-call-api#how
     const weatherApiKey = "95f8c20b3dbfd6ef88b8d05477161fb2";
-    // https://positionstack.com/quickstart
-    // const geocodeApiKey = "05f7e859be5401b4c8ef273ab790760d";
+//    https://opencagedata.com/api
     const geocodeApiKey = "09139eed245840c0ae1f7e7e3ed56de8";
     // All of the current weather hooks
     const currentDate = moment().format('L');
@@ -39,7 +38,6 @@ $(document).ready(function() {
         const locationInput = $('input').val();
         console.log(locationInput);
         // Grabs the Lat/Long of the input location.
-        // const queryURL = `https://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${locationInput}`;
         const queryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geocodeApiKey}`;
         // Querys the geocode API
         $.get(queryURL).then(function(returnedLatLong) {
