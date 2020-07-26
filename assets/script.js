@@ -21,12 +21,12 @@ $(document).ready(function() {
     let searchHistory = JSON.parse(window.localStorage.getItem('searchHistory')) || [];
     // Button creation for the search history
     const buttonRow = $('div.buttonRow');
-    const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
     console.log(searchHistory);
     function renderButtons() {
         $(buttonRow).empty();
         searchHistory.forEach(function(item) {
             console.log(item);
+            const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
             historyButton.attr('data-lat', item.lat).attr('data-long', item.long).attr('value', item.value).text(item.value);
             buttonRow.prepend(historyButton);
         })
@@ -62,7 +62,7 @@ $(document).ready(function() {
                     $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
-
+                const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
                 searchHistory.push({value: locationInput, lat: lat, long: long});
                 window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
                 console.log(searchHistory);
