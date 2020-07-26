@@ -52,7 +52,7 @@ $(document).ready(function() {
                 console.log(returnedWeather);
                 const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
                 cityAndDate.text(`${locationInput} (${currentDate})`);
-                currentIcon.attr('src', `http://openweathermap.org/img/wn/${icon}@2x.png`)
+                currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
                 currentTemp.text(temp);
                 currentWind.text(wind_speed);
                 currentUV.text(uvi);
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 forecastContent.each(function(forecastDay) {
                     console.log(forecastDay);
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
-                    $(forecastIcon[forecastDay]).attr("src", `http://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
+                    $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
                     $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
@@ -87,7 +87,7 @@ $(document).ready(function() {
             console.log(returnedWeather);
             const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
             cityAndDate.text(`${targetButton.value} (${currentDate})`);
-            currentIcon.attr('src', `http://openweathermap.org/img/wn/${icon}@2x.png`)
+            currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
             currentTemp.text(temp);
             currentWind.text(wind_speed);
             currentUV.text(uvi);
@@ -95,7 +95,7 @@ $(document).ready(function() {
             forecastContent.each(function(forecastDay) {
                 console.log(forecastDay);
                 $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
-                $(forecastIcon[forecastDay]).attr("src", `http://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
+                $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
                 $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                 $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
             })
