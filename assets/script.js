@@ -55,7 +55,7 @@ $(document).ready(function() {
                 currentTemp.text(temp);
                 currentWind.text(wind_speed);
                 currentUV.text(uvi);
-
+                // loops over the forecast divs and inputs forecast for each item.
                 forecastContent.each(function(forecastDay) {
                     console.log(forecastDay);
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
@@ -63,6 +63,7 @@ $(document).ready(function() {
                     $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
+                // generates button based on the search and adds to the search history. 
                 const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
                 searchHistory.push({value: locationInput, lat: lat, long: long});
                 window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -72,6 +73,7 @@ $(document).ready(function() {
             })
         })
     })
+    // this listener looks out for clicks on buttons that may not yet exist, but are the search history buttons. 
     $(document).on("click", "button.historyButton", function(event) {
         event.preventDefault();
         const targetButton = event.target;
@@ -79,7 +81,7 @@ $(document).ready(function() {
         const long = $(targetButton).attr('data-long');
         console.log(lat,long);
         const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
-
+        // the AJAX get request for the previous search button. 
         $.get(weatherURL).then(function(returnedWeather) {
             console.log(returnedWeather);
             const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
