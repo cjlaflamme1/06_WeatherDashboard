@@ -38,7 +38,7 @@ $(document).ready(function() {
         const locationInput = $('input').val();
         console.log(locationInput);
         // Grabs the Lat/Long of the input location.
-        const queryURL = `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${locationInput}`;
+        const queryURL = `https://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${locationInput}`;
         // Querys the geocode API
         $.get(queryURL).then(function(returnedLatLong) {
             const lat = returnedLatLong.data[0].latitude;
