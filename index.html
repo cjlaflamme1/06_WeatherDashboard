@@ -9,7 +9,7 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header class="jumbotron jumbotron-fluid p-0">
+    <header class="jumbotron jumbotron-fluid p-0 m-0">
         <div class="container d-flex justify-content-center">
             <h1 class="display-4 content-align-center">
                 Weather Dashboard
@@ -18,30 +18,72 @@
     </header>
     <main class="container-fluid">
         <div class="row">
-            <section class="col-12 col-md-4">
+            <section class="col-12 col-md-4 sideBar">
                 <form class="weatherSubmit">
-                    <label for="locationInput">Enter City and State:</label>
+                    <label class="searchLabel" for="locationInput">Enter City and State:</label>
+                    <br />
                     <input type="text" name="locationInput">
                     <button class="weatherSubmit btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                 </form>
+                <div class="buttonRow">
+
+                </div>
             </section>
             <!-- Current weather section -->
             <div class="col-12 col-md-8">
-                <div class="row card">
-                    <div class="col-12 currentWeather card-body">
-                        Some content
+                <div class="row">
+                    <div class="col-12 currentWeather card-body m-2">
+                        <div class="cityAndDate">
+                            <h2>Atlanta</h2>
+                        </div>
+                        <div class="currentTemp">
+                            Temperature: 
+                        </div>
+                        <div class="currentWindSpeed">
+                            Wind Speed:
+                        </div>
+                        <div class="currentUVIndex">
+                            UV Index:
+                        </div>
                     </div>
                 </div>
                 <!--5 day forecast Title -->
                 <div class="row">
                     <div class="col-12">
-                    More content
+                    <h3>5-Day Forecast:</h3>
                     </div>
                 </div>
                 <!-- 5 day forecast content -->
-                <section class="row">
-                    <div class="col-12">
-                    test content
+                <section class="row forecastRow">
+                    <div class="col-2 forecastContent mx-2">
+                        <h4 class="forecastDate">Date</h4>
+                        <i class="forecastPic">sun</i>
+                        <p class="temp">Temp: <span class="tempValue"></span></p>
+                        <p class="humidity">Humidity: <span class="humidityValue"></span></p>
+                    </div>
+                    <div class="col-2 forecastContent mx-2">
+                        <h4 class="forecastDate">Date</h4>
+                        <i class="forecastPic">sun</i>
+                        <p class="temp">Temp: <span class="tempValue"></span></p>
+                        <p class="humidity">Humidity: <span class="humidityValue"></span></p>
+                    </div>
+                    <div class="col-2 forecastContent mx-2">
+                        <h4 class="forecastDate">Date</h4>
+                        <i class="forecastPic">sun</i>
+                        <p class="temp">Temp: <span class="tempValue"></span></p>
+                        <p class="humidity">Humidity: <span class="humidityValue"></span></p>
+                    </div>
+                    <div class="col-2 forecastContent mx-2">
+                        <h4 class="forecastDate">Date</h4>
+                        <i class="forecastPic">sun</i>
+                        <p class="temp">Temp: <span class="tempValue"></span></p>
+                        <p class="humidity">Humidity: <span class="humidityValue"></span></p>
+                    </div>
+                    <div class="col-2 forecastContent mx-2">
+                        <h4 class="forecastDate">Date</h4>
+                        <i class="forecastPic">sun</i>
+                        <p class="temp">Temp: <span class="tempValue"></span></p>
+                        <p class="humidity">Humidity: <span class="humidityValue"></span></p>
                     </div>
             </section>
             </div>

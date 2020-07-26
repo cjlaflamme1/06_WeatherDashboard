@@ -1,7 +1,20 @@
 
+section.sideBar {
+    background-color: rgb(236, 225, 225);
+}
+
 div.currentWeather {
     width:100%;
     height: auto;
     background-color: red;
     border: 1px solid black;
+    border-radius: 15px;
+}
+
+div.forecastContent {
+    width:100%;
+    height: auto;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 15px;
 }
