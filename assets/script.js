@@ -50,15 +50,15 @@ $(document).ready(function () {
                 currentUV.text(uviInt);
                 console.log(uviInt);
                 if (uviInt < 3) {
-                    $(currentUV).css("background-color", "green");
+                    $(currentUV).css({"background-color": "green", "color": "white"});
                 } else if (uviInt < 6) {
-                    $(currentUV).css("background-color", "yellow");
+                    $(currentUV).css({"background-color": "yellow", "color":"black"});
                 } else if (uviInt < 8) {
-                    $(currentUV).css({ "background-color": "orange" });
+                    $(currentUV).css({ "background-color": "orange", "color": "white" });
                 } else if (uviInt < 11) {
-                    $(currentUV).css("background-color", "red");
+                    $(currentUV).css({"background-color": "red", "color": "white"});
                 } else if (uviInt > 10) {
-                    $(currentUV).css("background-color", "purple");
+                    $(currentUV).css({"background-color": "purple", "color": "white"});
                 }
 
                 forecastContent.each(function (forecastDay) {
@@ -100,15 +100,15 @@ $(document).ready(function () {
                 currentUV.text(uviInt);
                 console.log(uviInt);
                 if (uviInt < 3) {
-                    $(currentUV).css("background-color", "green");
+                    $(currentUV).css({"background-color": "green", "color": "white"});
                 } else if (uviInt < 6) {
-                    $(currentUV).css("background-color", "yellow");
+                    $(currentUV).css({"background-color": "yellow", "color":"black"});
                 } else if (uviInt < 8) {
-                    $(currentUV).css({ "background-color": "orange" });
+                    $(currentUV).css({ "background-color": "orange", "color": "white" });
                 } else if (uviInt < 11) {
-                    $(currentUV).css("background-color", "red");
+                    $(currentUV).css({"background-color": "red", "color": "white"});
                 } else if (uviInt > 10) {
-                    $(currentUV).css("background-color", "purple");
+                    $(currentUV).css({"background-color": "purple", "color": "white"});
                 }
 
                 // loops over the forecast divs and inputs forecast for each item.
@@ -150,15 +150,15 @@ $(document).ready(function () {
             currentUV.text(uviInt);
             console.log(uviInt);
             if (uviInt < 3) {
-                $(currentUV).css("background-color", "green");
+                $(currentUV).css({"background-color": "green", "color": "white"});
             } else if (uviInt < 6) {
-                $(currentUV).css("background-color", "yellow");
+                $(currentUV).css({"background-color": "yellow", "color":"black"});
             } else if (uviInt < 8) {
-                $(currentUV).css({ "background-color": "orange" });
+                $(currentUV).css({ "background-color": "orange", "color": "white" });
             } else if (uviInt < 11) {
-                $(currentUV).css("background-color", "red");
+                $(currentUV).css({"background-color": "red", "color": "white"});
             } else if (uviInt > 10) {
-                $(currentUV).css("background-color", "purple");
+                $(currentUV).css({"background-color": "purple", "color": "white"});
             }
 
             forecastContent.each(function (forecastDay) {
