@@ -1,6 +1,10 @@
+header.jumbotron {
+    background-color: rgb(56, 54, 54);
+    color: rgb(255, 255, 255);
+}
 
 section.sideBar {
-    background-color: rgb(236, 225, 225);
+    background-color: rgb(227, 234, 238);
 }
 
 div.currentWeather {
@@ -10,10 +14,16 @@ div.currentWeather {
     border-radius: 15px;
 }
 
+span.currentUVIndexValue {
+    background-color: rgb(255, 40, 40);
+    border-radius: 10%;
+    padding: 5px;
+}
+
 div.forecastContent {
     width:100%;
     height: auto;
-    background-color: red;
+    background-color: rgb(49, 114, 235);
     border: 1px solid black;
     border-radius: 15px;
 }

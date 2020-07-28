@@ -9,6 +9,7 @@ $(document).ready(function() {
     const cityAndDate = $('h2.cityDateValue');
     const currentIcon = $('img.currentWeatherIcon');
     const currentTemp = $('span.currentTempValue');
+    const currentHumidity = $('span.currentHumidityValue');
     const currentWind = $('span.currentWindSpeedValue');
     const currentUV = $('span.currentUVIndexValue');
     // All of the forecast hooks
@@ -50,10 +51,11 @@ $(document).ready(function() {
             // Uses newly acquired lat/long to find weather for the location.
             $.get(weatherURL).then(function(returnedWeather) {
                 console.log(returnedWeather);
-                const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+                const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
                 cityAndDate.text(`${locationInput} (${currentDate})`);
                 currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
                 currentTemp.text(temp);
+                currentHumidity.text(humidity);
                 currentWind.text(wind_speed);
                 currentUV.text(uvi);
                 // loops over the forecast divs and inputs forecast for each item.
