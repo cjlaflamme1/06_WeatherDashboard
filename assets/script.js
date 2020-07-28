@@ -30,8 +30,47 @@ $(document).ready(function() {
             const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
             historyButton.attr('data-lat', item.lat).attr('data-long', item.long).attr('value', item.value).text(item.value);
             buttonRow.prepend(historyButton);
-        })
-    }
+        }) 
+        // Populates the most recent weather information if a prior search existed.  
+        if(searchHistory.length>0) {
+            const item = (searchHistory.length - 1);
+            const lat = searchHistory[item].lat;
+            const long = searchHistory[item].long;
+            const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
+            // the AJAX get request for the previous search button. 
+            $.get(weatherURL).then(function(returnedWeather) {
+                console.log(returnedWeather);
+                const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+                cityAndDate.text(`${searchHistory[item].value} (${currentDate})`);
+                currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
+                currentTemp.text(Math.floor(parseInt(temp)));
+                currentHumidity.text(humidity);
+                currentWind.text(wind_speed);
+                const uviInt = Math.floor(parseInt(uvi));
+                currentUV.text(uviInt);
+                console.log(uviInt);
+                if(uviInt<3){
+                        $(currentUV).css("background-color", "green");
+                } else if (uviInt<6) {
+                        $(currentUV).css("background-color", "yellow");
+                } else if  (uviInt<8) {
+                        $(currentUV).css({"background-color": "orange"});
+                } else if (uviInt<11) {
+                        $(currentUV).css("background-color", "red");
+                }  else if (uviInt>10) {
+                        $(currentUV).css("background-color", "purple");
+                }
+
+                forecastContent.each(function(forecastDay) {
+                    console.log(forecastDay);
+                    $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
+                    $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
+                    $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
+                    $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
+                })
+            })
+        }  
+        }
     renderButtons();
     $('button.weatherSubmit').on("click", function(event) {
         event.preventDefault();
