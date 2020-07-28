@@ -46,18 +46,18 @@ $(document).ready(function () {
                 currentTemp.text(Math.floor(parseInt(temp)));
                 currentHumidity.text(humidity);
                 currentWind.text(wind_speed);
-                const uviInt = Math.floor(parseInt(uvi));
+                const uviInt = parseInt(uvi);
                 currentUV.text(uviInt);
                 console.log(uviInt);
-                if (uviInt < 3) {
+                if (uviInt <= 2) {
                     $(currentUV).css({"background-color": "green", "color": "white"});
-                } else if (uviInt < 6) {
+                } else if (uviInt <= 5) {
                     $(currentUV).css({"background-color": "yellow", "color":"black"});
-                } else if (uviInt < 8) {
+                } else if (uviInt <= 7) {
                     $(currentUV).css({ "background-color": "orange", "color": "white" });
-                } else if (uviInt < 11) {
+                } else if (uviInt <= 10) {
                     $(currentUV).css({"background-color": "red", "color": "white"});
-                } else if (uviInt > 10) {
+                } else if (uviInt >= 11) {
                     $(currentUV).css({"background-color": "purple", "color": "white"});
                 }
 
@@ -96,18 +96,18 @@ $(document).ready(function () {
                 currentTemp.text(Math.floor(parseInt(temp)));
                 currentHumidity.text(humidity);
                 currentWind.text(wind_speed);
-                const uviInt = Math.floor(parseInt(uvi));
+                const uviInt = parseInt(uvi);
                 currentUV.text(uviInt);
                 console.log(uviInt);
-                if (uviInt < 3) {
+                if (uviInt <= 2) {
                     $(currentUV).css({"background-color": "green", "color": "white"});
-                } else if (uviInt < 6) {
+                } else if (uviInt <= 5) {
                     $(currentUV).css({"background-color": "yellow", "color":"black"});
-                } else if (uviInt < 8) {
+                } else if (uviInt <= 7) {
                     $(currentUV).css({ "background-color": "orange", "color": "white" });
-                } else if (uviInt < 11) {
+                } else if (uviInt <= 10) {
                     $(currentUV).css({"background-color": "red", "color": "white"});
-                } else if (uviInt > 10) {
+                } else if (uviInt >= 11) {
                     $(currentUV).css({"background-color": "purple", "color": "white"});
                 }
 
@@ -146,18 +146,18 @@ $(document).ready(function () {
             currentTemp.text(Math.floor(parseInt(temp)));
             currentHumidity.text(humidity);
             currentWind.text(wind_speed);
-            const uviInt = Math.floor(parseInt(uvi));
+            const uviInt = parseInt(uvi);
             currentUV.text(uviInt);
             console.log(uviInt);
-            if (uviInt < 3) {
+            if (uviInt <= 2) {
                 $(currentUV).css({"background-color": "green", "color": "white"});
-            } else if (uviInt < 6) {
+            } else if (uviInt <= 5) {
                 $(currentUV).css({"background-color": "yellow", "color":"black"});
-            } else if (uviInt < 8) {
+            } else if (uviInt <= 7) {
                 $(currentUV).css({ "background-color": "orange", "color": "white" });
-            } else if (uviInt < 11) {
+            } else if (uviInt <= 10) {
                 $(currentUV).css({"background-color": "red", "color": "white"});
-            } else if (uviInt > 10) {
+            } else if (uviInt >= 11) {
                 $(currentUV).css({"background-color": "purple", "color": "white"});
             }
 
