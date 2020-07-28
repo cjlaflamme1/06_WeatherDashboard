@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // API Keys and their documentation
     // https://openweathermap.org/api/one-call-api#how
     const weatherApiKey = "95f8c20b3dbfd6ef88b8d05477161fb2";
-//    https://opencagedata.com/api
+    //    https://opencagedata.com/api
     const geocodeApiKey = "09139eed245840c0ae1f7e7e3ed56de8";
     // All of the current weather hooks
     const currentDate = moment().format('L');
@@ -25,22 +25,22 @@ $(document).ready(function() {
     console.log(searchHistory);
     function renderButtons() {
         $(buttonRow).empty();
-        searchHistory.forEach(function(item) {
+        searchHistory.forEach(function (item) {
             console.log(item);
             const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
             historyButton.attr('data-lat', item.lat).attr('data-long', item.long).attr('value', item.value).text(item.value);
             buttonRow.prepend(historyButton);
-        }) 
+        })
         // Populates the most recent weather information if a prior search existed.  
-        if(searchHistory.length>0) {
+        if (searchHistory.length > 0) {
             const item = (searchHistory.length - 1);
             const lat = searchHistory[item].lat;
             const long = searchHistory[item].long;
             const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
             // the AJAX get request for the previous search button. 
-            $.get(weatherURL).then(function(returnedWeather) {
+            $.get(weatherURL).then(function (returnedWeather) {
                 console.log(returnedWeather);
-                const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+                const { current: { humidity, temp, wind_speed, uvi, weather: { [0]: { icon } } }, daily } = returnedWeather;
                 cityAndDate.text(`${searchHistory[item].value} (${currentDate})`);
                 currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
                 currentTemp.text(Math.floor(parseInt(temp)));
@@ -49,19 +49,19 @@ $(document).ready(function() {
                 const uviInt = Math.floor(parseInt(uvi));
                 currentUV.text(uviInt);
                 console.log(uviInt);
-                if(uviInt<3){
-                        $(currentUV).css("background-color", "green");
-                } else if (uviInt<6) {
-                        $(currentUV).css("background-color", "yellow");
-                } else if  (uviInt<8) {
-                        $(currentUV).css({"background-color": "orange"});
-                } else if (uviInt<11) {
-                        $(currentUV).css("background-color", "red");
-                }  else if (uviInt>10) {
-                        $(currentUV).css("background-color", "purple");
+                if (uviInt < 3) {
+                    $(currentUV).css("background-color", "green");
+                } else if (uviInt < 6) {
+                    $(currentUV).css("background-color", "yellow");
+                } else if (uviInt < 8) {
+                    $(currentUV).css({ "background-color": "orange" });
+                } else if (uviInt < 11) {
+                    $(currentUV).css("background-color", "red");
+                } else if (uviInt > 10) {
+                    $(currentUV).css("background-color", "purple");
                 }
 
-                forecastContent.each(function(forecastDay) {
+                forecastContent.each(function (forecastDay) {
                     console.log(forecastDay);
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                     $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
@@ -69,10 +69,10 @@ $(document).ready(function() {
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
             })
-        }  
         }
+    }
     renderButtons();
-    $('button.weatherSubmit').on("click", function(event) {
+    $('button.weatherSubmit').on("click", function (event) {
         event.preventDefault();
         // takes the value of the weather input.
         const locationInput = $('input').val();
@@ -81,16 +81,16 @@ $(document).ready(function() {
         // Grabs the Lat/Long of the input location.
         const queryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geocodeApiKey}`;
         // Querys the geocode API
-        $.get(queryURL).then(function(returnedLatLong) {
+        $.get(queryURL).then(function (returnedLatLong) {
             console.log(returnedLatLong)
-            const {results:{[0]:{formatted, geometry:{lat, lng}}}} = returnedLatLong;
+            const { results: { [0]: { formatted, geometry: { lat, lng } } } } = returnedLatLong;
             const weatherLocation = formatted;
             console.log(weatherLocation);
             const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
             // Uses newly acquired lat/long to find weather for the location.
-            $.get(weatherURL).then(function(returnedWeather) {
+            $.get(weatherURL).then(function (returnedWeather) {
                 console.log(returnedWeather);
-                const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+                const { current: { humidity, temp, wind_speed, uvi, weather: { [0]: { icon } } }, daily } = returnedWeather;
                 cityAndDate.text(`${weatherLocation} (${currentDate})`);
                 currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
                 currentTemp.text(Math.floor(parseInt(temp)));
@@ -99,20 +99,20 @@ $(document).ready(function() {
                 const uviInt = Math.floor(parseInt(uvi));
                 currentUV.text(uviInt);
                 console.log(uviInt);
-                if(uviInt<3){
-                        $(currentUV).css("background-color", "green");
-                } else if (uviInt<6) {
-                        $(currentUV).css("background-color", "yellow");
-                } else if  (uviInt<8) {
-                        $(currentUV).css({"background-color": "orange"});
-                } else if (uviInt<11) {
-                        $(currentUV).css("background-color", "red");
-                }  else if (uviInt>10) {
-                        $(currentUV).css("background-color", "purple");
-                }  
-                 
+                if (uviInt < 3) {
+                    $(currentUV).css("background-color", "green");
+                } else if (uviInt < 6) {
+                    $(currentUV).css("background-color", "yellow");
+                } else if (uviInt < 8) {
+                    $(currentUV).css({ "background-color": "orange" });
+                } else if (uviInt < 11) {
+                    $(currentUV).css("background-color", "red");
+                } else if (uviInt > 10) {
+                    $(currentUV).css("background-color", "purple");
+                }
+
                 // loops over the forecast divs and inputs forecast for each item.
-                forecastContent.each(function(forecastDay) {
+                forecastContent.each(function (forecastDay) {
                     console.log(forecastDay);
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                     $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
@@ -121,7 +121,7 @@ $(document).ready(function() {
                 })
                 // generates button based on the search and adds to the search history. 
                 const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
-                searchHistory.push({value: weatherLocation, lat: lat, long: lng});
+                searchHistory.push({ value: weatherLocation, lat: lat, long: lng });
                 window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
                 console.log(searchHistory);
                 historyButton.attr('data-lat', lat).attr('data-long', lng).attr('value', weatherLocation).text(weatherLocation);
@@ -130,17 +130,17 @@ $(document).ready(function() {
         })
     })
     // this listener looks out for clicks on buttons that may not yet exist, but are the search history buttons. 
-    $(document).on("click", "button.historyButton", function(event) {
+    $(document).on("click", "button.historyButton", function (event) {
         event.preventDefault();
         const targetButton = event.target;
         const lat = $(targetButton).attr('data-lat');
         const long = $(targetButton).attr('data-long');
-        console.log(lat,long);
+        console.log(lat, long);
         const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
         // the AJAX get request for the previous search button. 
-        $.get(weatherURL).then(function(returnedWeather) {
+        $.get(weatherURL).then(function (returnedWeather) {
             console.log(returnedWeather);
-            const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+            const { current: { humidity, temp, wind_speed, uvi, weather: { [0]: { icon } } }, daily } = returnedWeather;
             cityAndDate.text(`${targetButton.value} (${currentDate})`);
             currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
             currentTemp.text(Math.floor(parseInt(temp)));
@@ -149,25 +149,25 @@ $(document).ready(function() {
             const uviInt = Math.floor(parseInt(uvi));
             currentUV.text(uviInt);
             console.log(uviInt);
-            if(uviInt<3){
-                    $(currentUV).css("background-color", "green");
-            } else if (uviInt<6) {
-                    $(currentUV).css("background-color", "yellow");
-            } else if  (uviInt<8) {
-                    $(currentUV).css({"background-color": "orange"});
-            } else if (uviInt<11) {
-                    $(currentUV).css("background-color", "red");
-            }  else if (uviInt>10) {
-                    $(currentUV).css("background-color", "purple");
+            if (uviInt < 3) {
+                $(currentUV).css("background-color", "green");
+            } else if (uviInt < 6) {
+                $(currentUV).css("background-color", "yellow");
+            } else if (uviInt < 8) {
+                $(currentUV).css({ "background-color": "orange" });
+            } else if (uviInt < 11) {
+                $(currentUV).css("background-color", "red");
+            } else if (uviInt > 10) {
+                $(currentUV).css("background-color", "purple");
             }
 
-            forecastContent.each(function(forecastDay) {
+            forecastContent.each(function (forecastDay) {
                 console.log(forecastDay);
                 $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                 $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
                 $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
                 $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
             })
+        })
     })
-})   
 })
