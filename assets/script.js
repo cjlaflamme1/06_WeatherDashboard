@@ -57,7 +57,21 @@ $(document).ready(function() {
                 currentTemp.text(Math.floor(parseInt(temp)));
                 currentHumidity.text(humidity);
                 currentWind.text(wind_speed);
-                currentUV.text(uvi);
+                const uviInt = Math.floor(parseInt(uvi));
+                currentUV.text(uviInt);
+                console.log(uviInt);
+                if(uviInt<3){
+                        $(currentUV).css("background-color", "green");
+                } else if (uviInt<6) {
+                        $(currentUV).css("background-color", "yellow");
+                } else if  (uviInt<8) {
+                        $(currentUV).css({"background-color": "orange"});
+                } else if (uviInt<11) {
+                        $(currentUV).css("background-color", "red");
+                }  else if (uviInt>10) {
+                        $(currentUV).css("background-color", "purple");
+                }  
+                 
                 // loops over the forecast divs and inputs forecast for each item.
                 forecastContent.each(function(forecastDay) {
                     console.log(forecastDay);
@@ -93,7 +107,20 @@ $(document).ready(function() {
             currentTemp.text(Math.floor(parseInt(temp)));
             currentHumidity.text(humidity);
             currentWind.text(wind_speed);
-            currentUV.text(uvi);
+            const uviInt = Math.floor(parseInt(uvi));
+            currentUV.text(uviInt);
+            console.log(uviInt);
+            if(uviInt<3){
+                    $(currentUV).css("background-color", "green");
+            } else if (uviInt<6) {
+                    $(currentUV).css("background-color", "yellow");
+            } else if  (uviInt<8) {
+                    $(currentUV).css({"background-color": "orange"});
+            } else if (uviInt<11) {
+                    $(currentUV).css("background-color", "red");
+            }  else if (uviInt>10) {
+                    $(currentUV).css("background-color", "purple");
+            }
 
             forecastContent.each(function(forecastDay) {
                 console.log(forecastDay);
