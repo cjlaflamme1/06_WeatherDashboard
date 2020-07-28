@@ -44,15 +44,15 @@ $(document).ready(function() {
         // Querys the geocode API
         $.get(queryURL).then(function(returnedLatLong) {
             console.log(returnedLatLong)
-            const lat = returnedLatLong.results[0].geometry.lat;
-            const long = returnedLatLong.results[0].geometry.lng;
-            console.log(returnedLatLong);
-            const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
+            const {results:{[0]:{formatted, geometry:{lat, lng}}}} = returnedLatLong;
+            const weatherLocation = formatted;
+            console.log(weatherLocation);
+            const weatherURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude={part}&appid=${weatherApiKey}&units=imperial`;
             // Uses newly acquired lat/long to find weather for the location.
             $.get(weatherURL).then(function(returnedWeather) {
                 console.log(returnedWeather);
                 const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
-                cityAndDate.text(`${locationInput} (${currentDate})`);
+                cityAndDate.text(`${weatherLocation} (${currentDate})`);
                 currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
                 currentTemp.text(Math.floor(parseInt(temp)));
                 currentHumidity.text(humidity);
@@ -68,10 +68,10 @@ $(document).ready(function() {
                 })
                 // generates button based on the search and adds to the search history. 
                 const historyButton = $('<button>').addClass('btn btn-light btn-lg btn-block historyButton');
-                searchHistory.push({value: locationInput, lat: lat, long: long});
+                searchHistory.push({value: weatherLocation, lat: lat, long: lng});
                 window.localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
                 console.log(searchHistory);
-                historyButton.attr('data-lat', lat).attr('data-long', long).attr('value', locationInput).text(locationInput);
+                historyButton.attr('data-lat', lat).attr('data-long', lng).attr('value', weatherLocation).text(weatherLocation);
                 buttonRow.prepend(historyButton);
             })
         })
