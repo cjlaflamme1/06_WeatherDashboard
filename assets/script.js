@@ -54,7 +54,7 @@ $(document).ready(function() {
                 const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
                 cityAndDate.text(`${locationInput} (${currentDate})`);
                 currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
-                currentTemp.text(temp);
+                currentTemp.text(Math.floor(parseInt(temp)));
                 currentHumidity.text(humidity);
                 currentWind.text(wind_speed);
                 currentUV.text(uvi);
@@ -63,7 +63,7 @@ $(document).ready(function() {
                     console.log(forecastDay);
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                     $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
-                    $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
+                    $(forecastTemp[forecastDay]).text(Math.floor(parseInt(daily[forecastDay].temp.day)));
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
                 // generates button based on the search and adds to the search history. 
@@ -87,10 +87,11 @@ $(document).ready(function() {
         // the AJAX get request for the previous search button. 
         $.get(weatherURL).then(function(returnedWeather) {
             console.log(returnedWeather);
-            const { current: {temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
+            const { current: {humidity, temp, wind_speed, uvi, weather: {[0]:{icon}}}, daily} = returnedWeather;
             cityAndDate.text(`${targetButton.value} (${currentDate})`);
             currentIcon.attr('src', `https://openweathermap.org/img/wn/${icon}@2x.png`)
-            currentTemp.text(temp);
+            currentTemp.text(Math.floor(parseInt(temp)));
+            currentHumidity.text(humidity);
             currentWind.text(wind_speed);
             currentUV.text(uvi);
 
