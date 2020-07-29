@@ -18,4 +18,4 @@ For our sixth homework assignment, we were tasked with created a mobile-first an
 ---
 ### Screen Shots
 
-![Weather Page](.assets/screenShot.jpg)
+![Weather Page](./assets/screenShot.jpg)
