@@ -60,7 +60,7 @@ $(document).ready(function () {
                 forecastContent.each(function (forecastDay) {
                     $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                     $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
-                    $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
+                    $(forecastTemp[forecastDay]).text(Math.floor(parseInt(daily[forecastDay].temp.day)));
                     $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
                 })
             })
@@ -149,7 +149,7 @@ $(document).ready(function () {
             forecastContent.each(function (forecastDay) {
                 $(forecastDate[forecastDay]).text(moment().add(forecastDay, 'days').format('ddd'));
                 $(forecastIcon[forecastDay]).attr("src", `https://openweathermap.org/img/wn/${daily[forecastDay].weather[0].icon}@2x.png`);
-                $(forecastTemp[forecastDay]).text(daily[forecastDay].temp.day);
+                $(forecastTemp[forecastDay]).text(Math.floor(parseInt(daily[forecastDay].temp.day)));
                 $(forecastHumidity[forecastDay]).text(daily[forecastDay].humidity);
             })
         })
