@@ -4,7 +4,7 @@
 
 We were tasked with created a mobile-first and responsively designed Weather App.  The app needs to be able to retrieve weather for various cities and show the current for 5-day forecast.  
 
-[Link to website](https://cjlaflamme1.github.io/06_WeatherDashboard/)
+[Link to website](https://cjlaflamme1.github.io/WeatherDashboard/)
 
 ---
 ### Biggest Challenges
