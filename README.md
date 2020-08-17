@@ -1,10 +1,6 @@
 # Weather Dashboard
 
 
-<br />
-  <h1 align="center">Weather Dashboard</h1>
-
-
 <!-- TABLE OF CONTENTS -->
 # Table of Contents
 * [About the Project](#about-the-project)
